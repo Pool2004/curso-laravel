@@ -9,18 +9,18 @@
 <body>
 
 
-    <header>
+    <header style="background-color: green; color: white; padding: 10px; text-align: center;">
 
         <h1>Curso laravel 2025</h1>
         
         @yield('header')
     </header>
 
-    <main>
+    <main style="padding: 20px; background-color: #a0a0a0;">
         @yield('body')
     </main>
 
-    <footer>
+    <footer style="background-color: rgb(23, 0, 128); color: white; padding: 10px; text-align: center;">
         2025 - Curso Laravel | Todos los derechos reservados
         <br>
     </footer>
