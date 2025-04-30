@@ -11,9 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('product', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::create('productos', function (Blueprint $table) {
+            $table->id(); // Campo autoincrementable
+            $table->string('nombre');
+            $table->text('descripcion');
+            $table->decimal('precio', 8, 0);
+            $table->integer('stock');
+            $table->timestamps(); // Campo de fecha (DD-MM-YYYY HH:MM:SS)
         });
     }
 
@@ -22,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('product');
+        Schema::dropIfExists('productos');
     }
 };
