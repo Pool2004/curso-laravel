@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\productController;
 
-Route::get('/user', [userController::class, 'index']);
+// Route::get('/user', [userController::class, 'index']);
 
 Route::get('/', [productController::class, 'index'])->name('products');
 

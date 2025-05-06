@@ -156,6 +156,145 @@ class productController extends Controller
 
     }
 
+
+
+    // METODOS API JSON
+
+    public function getAllProducts(){
+        $productos = Producto::all();
+
+        if($productos->isEmpty()){
+            return response()->json(['message' => 'No hay productos disponibles'], 404);
+        }
+
+        return response()->json($productos, 200);
+    }
+
+    public function getProduct($id){
+
+        if($id == null){
+            return response()->json(['message' => 'El id no puede ser nulo'], 404);
+
+        }
+
+        $producto = Producto::find($id);
+        if(!$producto){
+            return response()->json(['message' => 'El producto no existe'], 404);
+        }
+
+        return response()->json($producto, 200);
+    }
+
+    public function getProductByName($name = 'Null'){
+
+        if($name == 'Null'){
+            return response()->json(['message' => 'El nombre no puede ser nulo'], 404);
+        }
+
+        $producto = Producto::where('nombre', $name)->first();
+
+        if(!$producto){
+            return response()->json(['message' => 'El producto no existe'], 404);
+        }
+
+        return response()->json($producto, 200);
+    }
+
+    public function getProductByPrice($min = 0, $max = 1000000){
+
+        $productos = Producto::whereBetween('precio', [$min, $max])->get();
+
+        if($productos->isEmpty()){
+            return response()->json(['message' => 'No hay productos disponibles'], 404);
+        }
+
+        return response()->json($productos, 200);
+
+    }
+
+    public function createProductApi(Request $request){
+
+        $validate = $request->validate([
+            'nombre' => 'required|string|max:255',
+            'descripcion' => 'required|string|max:1000',
+            'precio' => 'required|numeric|min:0',
+            'stock' => 'required|integer|min:0'
+        ]);
+
+        $producto = Producto::create($validate);
+
+        return response()->json(['message' => 'Producto creado exitosamente', 'producto' => $producto], 201);
+    }
+
+    public function updateProductApi(Request $request, $id){
+
+        if($id == null){
+            return response()->json(['message' => 'El id no puede ser nulo'], 404);
+        }
+
+        $producto = Producto::find($id);
+
+        if(!$producto){
+            return response()->json(['message' => 'El producto no existe'], 404);
+        }
+
+        $validate = $request->validate([
+            'nombre' => 'required|string|max:255',
+            'descripcion' => 'required|string|max:1000',
+            'precio' => 'required|numeric|min:0',
+            'stock' => 'required|integer|min:0'
+        ]);
+
+        // Actualizar el producto
+        $producto = Producto::where('id', $id)->update($validate);
+
+        return response()->json(['message' => 'Producto actualizado exitosamente', 'producto' => $producto], 200);
+    }
+
+    public function patchProductApi(Request $request, $id){
+
+        if($id == null){
+            return response()->json(['message' => 'El id no puede ser nulo'], 404);
+        }
+
+        $producto = Producto::find($id);
+
+        if(!$producto){
+            return response()->json(['message' => 'El producto no existe'], 404);
+        }
+
+        $validate = $request->validate([
+            'nombre' => 'string|max:255',
+            'descripcion' => 'string|max:1000',
+            'precio' => 'numeric|min:0',
+            'stock' => 'integer|min:0'
+        ]);
+
+        // Actualizar el producto
+        $producto = Producto::where('id', $id)->update($validate);
+
+        return response()->json(['message' => 'Producto actualizado exitosamente', 'producto' => $producto], 200);
+    }
+
+
+    public function deleteProductApi($id){
+
+        if($id == null){
+            return response()->json(['message' => 'El id no puede ser nulo'], 404);
+        }
+
+        $producto = Producto::find($id);
+
+        if(!$producto){
+            return response()->json(['message' => 'El producto no existe'], 404);
+        }
+
+        // Producto::destroy($id);
+        // Eliminar el producto
+        $producto->delete();
+        return response()->json(['message' => 'Producto eliminado exitosamente'], 200);
+    }
+
     
 
 
