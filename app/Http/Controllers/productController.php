@@ -182,7 +182,9 @@ class productController extends Controller
             return response()->json(['message' => 'El producto no existe'], 404);
         }
 
-        return response()->json($producto, 200);
+    
+
+        return response()->json(['producto' => $producto], 200);
     }
 
     public function getProductByName($name = 'Null'){
