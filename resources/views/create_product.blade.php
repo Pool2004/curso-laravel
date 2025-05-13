@@ -6,7 +6,7 @@
 
 @section('body')    
 
-    <form action="{{ route('createProduct')}}" method="POST" style="width: 50%; margin: auto; padding: 20px; border: 1px solid #ccc; border-radius: 5px;">
+    <form action="{{ route('create_product') }}" method="POST" style="width: 50%; margin: auto; padding: 20px; border: 1px solid #ccc; border-radius: 5px;">
         <h1>Crear Producto</h1>
         @csrf
         <div class="form-group">

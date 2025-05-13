@@ -30,7 +30,7 @@ Route::post('/user/login', [userController::class, 'loginUser']);
 
 // Rutas usuario
 
-Route::post('/user/logout', [userController::class, 'logout']);
+
 
 
 
@@ -40,4 +40,10 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/user/get', [userController::class, 'getUsers']);
 
+    Route::delete('/user/logout', [userController::class, 'logout']);
+
+    
+
 });
+
+

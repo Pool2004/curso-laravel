@@ -7,6 +7,8 @@ use App\Models\Producto; // Asegúrate de importar el modelo Producto
 
 class productController extends Controller
 {
+
+    // Funciones para ver los productos
     public function index(){
         
 

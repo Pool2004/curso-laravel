@@ -19,18 +19,20 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="{{ route('products')}}">Productos</a>
                     </li>
+                    
                     <li class="nav-item active">
-                        <a class="nav-link" href="{{ route('view')}}">Ver Producto</a>
+                        <a class="nav-link" href="{{ route('view_product')}}">Ver Producto</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('create')}}">Crear Producto</a>
+                        <a class="nav-link" href="{{ route('view_create_product')}}">Crear Producto</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('update')}}">Actualizar Producto</a>
+                        <a class="nav-link" >Actualizar Producto</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('delete')}}">Eliminar Producto</a>
+                        <a class="nav-link">Eliminar Producto</a>
                     </li>
+                
                 </ul>
             </div>
         </nav>
