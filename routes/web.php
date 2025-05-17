@@ -27,6 +27,8 @@ Route::middleware('guest')->get('/productos', [ProductController::class, 'index'
 // Rutas para ver producto - Middleware (Guest)
 
 Route::middleware('guest')->get('/get/product', [ProductController::class, 'viewProduct'])->name('view_product');
+Route::middleware('guest')->post('/get/product/id', [ProductController::class, 'findProduct'])->name('find_product');
+
 
 // Rutas para productos - Middleware  (Auth)
 

@@ -5,7 +5,7 @@
 
 @section('body')
 
-    <form action="{{ route('viewProduct')}}" method="POST"
+    <form action="{{ route('find_product')}}" method="POST"
         style="width: 50%; margin: auto; padding: 20px; border: 1px solid #ccc; border-radius: 5px;">
         <h1>Ver Producto</h1>
         @csrf
