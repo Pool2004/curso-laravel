@@ -230,6 +230,7 @@ class productController extends Controller
         return response()->json(['message' => 'Producto creado exitosamente', 'producto' => $producto], 201);
     }
 
+
     public function updateProductApi(Request $request, $id){
 
         if($id == null){
@@ -239,6 +240,7 @@ class productController extends Controller
         $producto = Producto::find($id);
 
         if(!$producto){
+
             return response()->json(['message' => 'El producto no existe'], 404);
         }
 
@@ -249,9 +251,7 @@ class productController extends Controller
             'stock' => 'required|integer|min:0'
         ]);
 
-        // Actualizar el producto
-        $producto = Producto::where('id', $id)->update($validate);
-
+        $producto->update($validate);
         return response()->json(['message' => 'Producto actualizado exitosamente', 'producto' => $producto], 200);
     }
 
@@ -274,29 +274,50 @@ class productController extends Controller
             'stock' => 'integer|min:0'
         ]);
 
-        // Actualizar el producto
-        $producto = Producto::where('id', $id)->update($validate);
-
+        $producto->update($validate);
         return response()->json(['message' => 'Producto actualizado exitosamente', 'producto' => $producto], 200);
     }
 
+    
+    
 
-    public function deleteProductApi($id){
 
-        if($id == null){
-            return response()->json(['message' => 'El id no puede ser nulo'], 404);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // Lógica para archivos
+
+    public function postArchivo(Request $request){
+
+        $file = $request->file('archivo');
+
+        if($file == null){
+            return response()->json(['message' => 'El archivo no puede ser nulo'], 404);
         }
 
-        $producto = Producto::find($id);
+        // Guardamos 
 
-        if(!$producto){
-            return response()->json(['message' => 'El producto no existe'], 404);
-        }
+        $file->storeAs('productos', $file->getClientOriginalName(), 'local');
 
-        // Producto::destroy($id);
-        // Eliminar el producto
-        $producto->delete();
-        return response()->json(['message' => 'Producto eliminado exitosamente'], 200);
+        return response()->json(['message' => 'Archivo guardado exitosamente'], 200);
+
     }
 
     

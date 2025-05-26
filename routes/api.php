@@ -17,7 +17,35 @@ Route::put('/product/update/{id}', [productController::class, 'updateProductApi'
 
 Route::patch('/product/patch/{id}', [productController::class, 'patchProductApi']);
 
-Route::delete('/product/delete/{id}', [productController::class, 'deleteProductApi']);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // Rutas usuario
@@ -84,5 +112,11 @@ Route::get('/test/restricted/{id}', function($id){
 Route::get('/test/{name}/{id?}', function($name, $id = 0){
     return response()->json(["Name" => $name, "Number" => $id]);
 })->where(['name' => '[a-zA-Z]+', 'id' => '[0-9]+']);
+
+
+
+// EndPoints para archivos
+
+Route::post('/post/archivo/up', [productController::class, 'postArchivo']);
 
 
